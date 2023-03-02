@@ -23,7 +23,7 @@ parser = Parser()
 
 html_files = [f for f in listdir('html_files') if isfile(join('html_files', f))]
 for file in html_files:
-    parser.feed(open('html_files/' + file).read())
+   parser.feed(open('html_files/' + file).read())
 
 # Creating lists of every exercise, with all of html files data in all_data variable, a pattern is used to get a list of
 # all exercises classified : ['subject', 'month', 'year', 'EXAL???'].
@@ -41,7 +41,7 @@ i = 0
 while i < len(all_data):
     if count == 2 and check_months(months, all_data[i]) is False:
         all_data.insert(i, 'janvier')
-    if count == 3 and all_data[i].split(' ')[0].isnumeric() is False:
+    if count == 3 and all_data[i][:3].isnumeric() is False:
         all_data.insert(i, '1900')
     if count == 4:
         count = 0
@@ -62,6 +62,8 @@ for data in all_data:
 # Asking for subject wanted and opening each exercise
 running = 1
 subject = ""
+for i in list_completed:
+    print(i[3])
 while running:
     if running == 1:
         subject = input("What subject are you searching for? (Press enter if you want to exit the script) : ")
