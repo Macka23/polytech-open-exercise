@@ -7,9 +7,6 @@ from os.path import isfile, join
 
 # Getting data from html file
 class Parser(HTMLParser):
-    def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        pass
-
     def handle_data(self, data: str) -> None:
         all_data.append(data)
 
