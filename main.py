@@ -61,9 +61,7 @@ for data in all_data:
 
 # Asking for subject wanted and opening each exercise
 running = 1
-subject = ""
-for i in list_completed:
-    print(i[3])
+subject = "NEVER_GOING_TO_BE_IN_A_STRING_GGWP"
 while running:
     if running == 1:
         subject = input("What subject are you searching for? (Press enter if you want to exit the script) : ")
