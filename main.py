@@ -3,7 +3,8 @@ from html.parser import HTMLParser
 import re
 from os import listdir
 from os.path import isfile, join
-
+import os
+import sys
 
 # Getting data from html file
 class Parser(HTMLParser):
@@ -21,9 +22,7 @@ def check_months(one12, item):
 all_data = []
 parser = Parser()
 
-html_files = [f for f in listdir('html_files') if isfile(join('html_files', f))]
-for file in html_files:
-   parser.feed(open('html_files/' + file).read())
+parser.feed(open('all_html_content.html').read())
 
 # Creating lists of every exercise, with all of html files data in all_data variable, a pattern is used to get a list of
 # all exercises classified : ['subject', 'month', 'year', 'EXAL???'].
