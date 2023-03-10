@@ -74,4 +74,5 @@ while running:
             divide = re.split('(\d+)', exercise[3])
             webbrowser.open(
                 f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}")
+            print(f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}")
     running += 1
