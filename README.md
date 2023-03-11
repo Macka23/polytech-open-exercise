@@ -1,4 +1,4 @@
-#Polytech-open-exercise
+# Polytech-open-exercise
 
 This GitHub repository is meant to be used by students in 6th year in middle school wanting to attempt at polytechnic 
 UCL/ULB exam.
