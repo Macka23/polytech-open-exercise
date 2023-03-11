@@ -58,6 +58,14 @@ for data in all_data:
         new_list = []
         count = 0
 
+all_subject = []
+for i in list_completed:
+    i[0] = i[0].replace('Ã©', 'é')
+    i[0] = i[0].replace('Ã¨', 'è')
+    i[0] = i[0].replace('Ã´', 'ô')
+    if "primi" in i[0]:
+        i[0] = "Intégrale"
+
 # Asking for subject wanted and opening each exercise
 running = 1
 subject = "NEVER_GOING_TO_BE_IN_A_STRING_GGWP"
@@ -71,7 +79,10 @@ while running:
     for exercise in list_completed:
         if subject.lower() in exercise[0].lower():
             divide = re.split('(\d+)', exercise[3])
-            webbrowser.open(
-                f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}")
-            print(f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}")
+            link = f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}"
+            webbrowser.open(link)
+            if len(link) > 84:
+                print(f"{link}       {exercise[0]}")
+            else:
+                print(f"{link}        {exercise[0]}")
     running += 1
