@@ -3,7 +3,7 @@
 This GitHub repository is meant to be used by students in 6th year in middle school wanting to attempt at polytechnic 
 UCL/ULB exam.
 
-When you installed the repository, go to `dist`, then open `main` folder and execute `main.exe` file. 
+When you installed the repository, go to `executable` folder and execute `main.exe` file. 
 
 You'll be able to search for the exercises you want : you can write the whole name of your subject or only the beginning
 of the word. (example : instead of *Limites* -> input *lim*)
