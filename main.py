@@ -1,10 +1,7 @@
 import webbrowser
 from html.parser import HTMLParser
 import re
-from os import listdir
-from os.path import isfile, join
-import os
-import sys
+
 
 # Getting data from html file
 class Parser(HTMLParser):
@@ -21,7 +18,6 @@ def check_months(one12, item):
 
 all_data = []
 parser = Parser()
-
 parser.feed(open('all_html_content.html').read())
 
 # Creating lists of every exercise, with all of html files data in all_data variable, a pattern is used to get a list of
@@ -58,6 +54,7 @@ for data in all_data:
         new_list = []
         count = 0
 
+# Adjusting list
 all_subject = []
 for i in list_completed:
     i[0] = i[0].replace('Ã©', 'é')
@@ -65,22 +62,47 @@ for i in list_completed:
     i[0] = i[0].replace('Ã´', 'ô')
     if "primi" in i[0]:
         i[0] = "Intégrale"
+    if "septembre" in i[0]:
+        i[0] = "limites"
+    if i[0] in "Année" or i[0] in "Sujet":
+        list_completed.pop(list_completed.index(i))
+
+# Help list created if user cannot find exercise
+help_list = {'Aire et volume', 'Angles', 'Binôme de newton', 'Calcul numérique', 'Cylcométriques', 'Cône', 'Divers',
+             'Domaine', 'Dérivée', 'Déterminant', 'Equation', 'Etude de fonction',
+             'Expression', 'Fonction inverse', 'Hexagone', 'Identité', 'Intégrale', 'Inéquation',
+             'Lieu géométrique', 'Limites', 'Logarithmes et exponentielles', 'Matrices', 'Nombre complexe',
+             'Optimisation', 'Polygone', 'Polynôme', 'Primitive', 'Problème', 'Relation', 'Second degré',
+             'Session', 'Sphère', 'Suites', 'Surface et volume', 'Système paramétrique', 'Théorème', 'Trapèze',
+             'Vrai/faux'}
 
 # Asking for subject wanted and opening each exercise
 running = 1
 subject = "NEVER_GOING_TO_BE_IN_A_STRING_GGWP"
 while running:
     if running == 1:
-        subject = input("What subject are you searching for? (Press enter if you want to exit the script) : ")
+        subject = input(
+            "What subject are you searching for? (For help: write '--help'. Press enter if you want to exit the "
+            "script) : ")
     if running > 1:
-        subject = input("Something else? (Press enter if you want to exit the script) : ")
+        subject = input("Something else? (For help; write '--help'. Press enter if you want to exit the script) : ")
     if subject == "":
         break
+    if subject == "--help":
+        print("Here are all subjects fetched from studentacademy.be")
+        for help in sorted(help_list):
+            print(help)
     for exercise in list_completed:
-        if subject.lower() in exercise[0].lower():
+        if subject.lower()[:4] in exercise[0].lower():
             divide = re.split('(\d+)', exercise[3])
-            link = f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/{divide[0]}/{divide[1]}"
-            webbrowser.open(link)
+            link = ""
+            try:
+                link = f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/" \
+                       f"{divide[0]}/{divide[1]}"
+                webbrowser.open(link)
+            except:
+                print("Couldn't find any exercise.")
+                break
             if len(link) > 84:
                 print(f"{link}       {exercise[0]}")
             else:
