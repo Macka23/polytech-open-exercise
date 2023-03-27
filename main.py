@@ -93,7 +93,7 @@ while running:
         for help in sorted(help_list):
             print(help)
     for exercise in list_completed:
-        if subject.lower()[:4] in exercise[0].lower():
+        if subject.lower() in exercise[0].lower():
             divide = re.split('(\d+)', exercise[3])
             link = ""
             try:
