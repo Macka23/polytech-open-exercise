@@ -24,7 +24,7 @@ parser.feed(open('all_html_content.html').read())
 # all exercises classified : ['subject', 'month', 'year', 'EXAL???'].
 new_list = []
 list_completed = []
-months = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre',
+months = ['No month', 'janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre',
           'décembre']
 
 all_data = all_data[7:]
@@ -35,9 +35,9 @@ count = 1
 i = 0
 while i < len(all_data):
     if count == 2 and check_months(months, all_data[i]) is False:
-        all_data.insert(i, 'janvier')
-    if count == 3 and all_data[i][:3].isnumeric() is False:
-        all_data.insert(i, '1900')
+        all_data.insert(i, 'No month')
+    if count == 3 and all_data[i] != "No year" and all_data[i][:3].isnumeric() is False:
+        all_data.insert(i, 'No year')
     if count == 4:
         count = 0
     count += 1
@@ -92,6 +92,7 @@ while running:
         print("Here are all subjects fetched from studentacademy.be")
         for help in sorted(help_list):
             print(help)
+    count = 0
     for exercise in list_completed:
         if subject.lower() in exercise[0].lower():
             divide = re.split('(\d+)', exercise[3])
@@ -100,11 +101,17 @@ while running:
                 link = f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/" \
                        f"{divide[0]}/{divide[1]}"
                 webbrowser.open(link)
+                count += 1
             except:
                 print("Couldn't find any exercise.")
                 break
+            blank = 40 - len(exercise[0])
+            white = ""
+            for space in range(blank):
+                white += " "
             if len(link) > 84:
-                print(f"{link}       {exercise[0]}")
+                print(f"{link}       {exercise[0]} {white} {exercise[2]}")
             else:
-                print(f"{link}        {exercise[0]}")
+                print(f"{link}        {exercise[0]} {white} {exercise[2]}")
+    print(f"Found {count} exercises.")
     running += 1
