@@ -69,7 +69,7 @@ for i in list_completed:
 
 # Help list created if user cannot find exercise
 help_list = {'Aire et volume', 'Angles', 'Binôme de newton', 'Calcul numérique', 'Cylcométriques', 'Cône', 'Divers',
-             'Domaine', 'Dérivée', 'Déterminant', 'Equation', 'Etude de fonction',
+             'Domaine', 'Dérivée', 'Déterminant', 'Droites et plan', 'Equation', 'Etude de fonction',
              'Expression', 'Fonction inverse', 'Hexagone', 'Identité', 'Intégrale', 'Inéquation',
              'Lieu géométrique', 'Limites', 'Logarithmes et exponentielles', 'Matrices', 'Nombre complexe',
              'Optimisation', 'Polygone', 'Polynôme', 'Primitive', 'Problème', 'Relation', 'Second degré',
@@ -103,7 +103,7 @@ while running:
                 webbrowser.open(link)
                 count += 1
             except:
-                print("Couldn't find any exercise.")
+                print("Couldn't find that exercise.")
                 break
             blank = 40 - len(exercise[0])
             white = ""
