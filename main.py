@@ -78,20 +78,30 @@ help_list = {'Aire et volume', 'Angles', 'Binôme de newton', 'Calcul numérique
 
 # Asking for subject wanted and opening each exercise
 running = 1
+mode = 1
 subject = "NEVER_GOING_TO_BE_IN_A_STRING_GGWP"
 while running:
     if running == 1:
         subject = input(
-            "What subject are you searching for? (For help: write '--help'. Press enter if you want to exit the "
-            "script) : ")
+            "What subject are you searching for? (For help: write '--help'. (For help; write '--help'. Exit script; "
+            "press Enter. Change open mode; --change): ")
     if running > 1:
-        subject = input("Something else? (For help; write '--help'. Press enter if you want to exit the script) : ")
+        subject=input("Something else? (For help; write '--help'. Exit script; press Enter. Change open mode; "
+                      "--change):")
     if subject == "":
         break
     if subject == "--help":
         print("Here are all subjects fetched from studentacademy.be")
         for help in sorted(help_list):
             print(help)
+    if subject == "--change":
+        mode += 1
+        if mode % 2 == 0:
+            print("Open mode disabled.")
+        else:
+            print("Open mode enabled.")
+
+
     count = 0
     for exercise in list_completed:
         if subject.lower() in exercise[0].lower():
@@ -100,7 +110,8 @@ while running:
             try:
                 link = f"https://studentacademy.be/examen-entree/polytech/anciens-examens/#/ex-page/" \
                        f"{divide[0]}/{divide[1]}"
-                webbrowser.open(link)
+                if mode % 2 != 0:
+                    webbrowser.open(link)
                 count += 1
             except:
                 print("Couldn't find that exercise.")
@@ -113,5 +124,6 @@ while running:
                 print(f"{link}       {exercise[0]} {white} {exercise[2]}")
             else:
                 print(f"{link}        {exercise[0]} {white} {exercise[2]}")
-    print(f"Found {count} exercises.")
+    if subject != "--change" and subject != "--help":
+        print(f"Found {count} exercises.")
     running += 1
