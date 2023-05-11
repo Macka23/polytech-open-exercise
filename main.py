@@ -45,7 +45,8 @@ def date_input_entries():
     date = ""
     subject = []
     total_entry = input(
-        "What subject are you searching and when was it? (Press Enter to exit. Change open mode; --change. '--help-commands'): ").split(" ")
+        "What subject are you searching and when was it?\n"
+        "(Press Enter to exit. Change open mode; --change. '--help-commands'): ").split(" ")
     for entry in total_entry:
         if entry.isnumeric():
             date += entry
