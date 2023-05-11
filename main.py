@@ -46,7 +46,7 @@ def date_input_entries():
     subject = []
     total_entry = input(
         "What subject are you searching and when was it?\n"
-        "(Press Enter to exit. Change open mode; --change. '--help-commands'): ").split(" ")
+        "(Press Enter to exit. Change open mode; --change. For help; '--help' '--help-commands'): ").split(" ")
     for entry in total_entry:
         if entry.isnumeric():
             date += entry
@@ -184,16 +184,16 @@ while running:
         print("Here are all the commands created:\n"
               "'--change' : Navigator tabs won't open when you input your subject\n"
               "When you input something, write your subject and eventually a year within them a space, it'll search for every "
-              "exercises released on that specific date. (ex.: inté 2005). If you don't input any year, it'll search for every exercises named the same way as your subject.")
+              "exercises released on that specific date. (ex.: inté 2005). \nIf you don't input any year, it'll search for every exercises named the same way as your subject.\n")
 
 
     if subject == "--help":
-        print("Here are all subjects fetched from studentacademy.be :")
+        print("Here are all subjects fetched from studentacademy.be :\n")
         for help in sorted(help_list):
             print(help)
 
         print("When you input something, write your subject and eventually a year within them a space, it'll search for every"
-              "exercises released on that specific date. (ex.: inté 2005). If you don't input any year, it'll search for every exercises named the same way as your subject.")
+              "exercises released on that specific date. (ex.: inté 2005).\nIf you don't input any year, it'll search for every exercises named the same way as your subject.\n")
 
 
     if subject == "--change":
