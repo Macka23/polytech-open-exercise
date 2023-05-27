@@ -176,7 +176,7 @@ list_completed = change_date(list_completed)
 running = 1
 open_window_mode = 1
 subject = "NEVER_GOING_TO_BE_IN_A_STRING_GGWP"
-date = "gurney"
+date = 'gurney'
 while running:
     date, subject = date_input_entries()
 
@@ -186,15 +186,17 @@ while running:
               "When you input something, write your subject and eventually a year within them a space, it'll search for every "
               "exercises released on that specific date. (ex.: inté 2005). \nIf you don't input any year, it'll search for every exercises named the same way as your subject.\n")
 
+    if date == "" or date == " ":
+        date = 'gurney'
 
     if subject == "--help":
         print("Here are all subjects fetched from studentacademy.be :\n")
         for help in sorted(help_list):
             print(help)
 
-        print("When you input something, write your subject and eventually a year within them a space, it'll search for every"
-              "exercises released on that specific date. (ex.: inté 2005).\nIf you don't input any year, it'll search for every exercises named the same way as your subject.\n")
-
+        print(
+            "When you input something, write your subject and eventually a year within them a space, it'll search for every"
+            "exercises released on that specific date. (ex.: inté 2005).\nIf you don't input any year, it'll search for every exercises named the same way as your subject.\n")
 
     if subject == "--change":
         open_window_mode += 1
@@ -208,13 +210,13 @@ while running:
 
     count = 0
     for exercise in list_completed:
-        if subject.lower() in exercise[0].lower() and date == "":
+        if subject.lower() in exercise[0].lower() and date == "gurney":
             count = open_normal_mode(count)
 
         if subject.lower() in exercise[0].lower() and date in exercise[2]:
             count = open_normal_mode(count)
 
-
     if subject != "--change" and subject != "--help" and subject != "--help-commands":
         print(f"Found {count} exercises.")
+
 
